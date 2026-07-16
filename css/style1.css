@@ -1,0 +1,688 @@
+/* ==========================================================================
+   0. 変数定義（:root） - スズメカラー・バージョン
+   ========================================================================== */
+:root {
+  --color-base: #fbf8f3;       /* 白に近い茶色（ベース背景：柔らかな生成り） */
+  --color-main: #b88b5c;       /* スズメの茶色（メイン：温かみのあるブラウン） */
+  --color-main-bg: #eddcc9;    /* スズメの羽の薄い茶色（セクション背景・吹き出し） */
+  --color-accent: #4a3b32;     /* スズメの焦げ茶（ヘッダー背景：深い焦げ茶） */
+  --color-accent-hover: #73573c; /* ボタンホバー時などのカラー */
+  --color-text: #2d241e;       /* 視認性の高いダーク焦げ茶（文字色） */
+  --color-white: #ffffff;      /* 白（カード内背景） */
+
+  /* 💡 外部インポートなしで世界観を優しく引き立てる標準フォントの設計 */
+  /* 見出し用：Mac/iOSは温かみのある丸ゴシック、Windowsは線が美しい游ゴシック等の極太ウェイトを優先 */
+  --font-title: "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+
+  /* 本文用：長文を読んでも目が疲れない、スマートでクリアなゴシック体を指定 */
+  --font-body: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+}
+
+/* ==========================================================================
+   1. 共通設定とリセット ＆ ヘッダー
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body); /* 💡 基本の文章はすっきり読みやすい本文フォントに */
+  font-weight: 400;              /* 💡 本文は細めに設定して読みやすさを高めます */
+  line-height: 1.85;             /* 💡 行間を広めにしてゆったりとした雰囲気に */
+  letter-spacing: 0.04em;        /* 💡 文字の間を少しだけ空けて視認性をアップ */
+  -webkit-font-smoothing: antialiased;
+}
+.top-page {
+  width: 100%;
+  overflow: hidden;
+}
+.main-visual {
+  position: relative;
+  width: 100%;
+  min-height: 750px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../image/Mv_suzume.png) center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+  margin-bottom: 50px;
+}
+
+.main-visual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: var(--color-main);
+  z-index: 1;
+}
+
+/* ✍️ タイトル・見出し類のコントラストを圧倒的に際立たせる共通設定 */
+.site-logo-header,
+.catchphrase,
+.senior-name,
+.section-title-en,
+.section-title,
+.message-title,
+.manner-title,
+.spot-button,
+.spot-button-inline,
+.onepoint-badge,
+.next-lead,
+.hover-bubble-panel .title {
+  font-family: var(--font-title); /* 💡 見出し類はすべて優しい雰囲気の丸ゴシック系に */
+  font-weight: 900;               /* 💡 限界まで極太にして「太さのコントラスト」を作ります */
+  letter-spacing: 0.08em;         /* 💡 文字間を上品に広げて、おしゃれで抜け感のあるロゴ・タイトルに */
+}
+
+.site-logo-header {
+  position: absolute;
+  top: 35px;
+  left: 50px;
+  font-size: 32px;
+  color: var(--color-white);
+  z-index: 2;
+}
+.catchphrase {
+  color: var(--color-white);
+  text-align: center;
+  font-size: clamp(22px, 4vw, 36px);
+  max-width: 1000px;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+    2. すずめ先輩の自己紹介セクション
+   ========================================================================== */
+.senior-intro-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.senior-container {
+  display: flex;
+  align-items: flex-end; /* 下端をぴったり揃える */
+  justify-content: center;
+  gap: 0; /* 💡 隙間を完全になくして、スズメと吹き出しを限界まで近づけます */
+  background: var(--color-white);
+  border-radius: 30px;
+  padding: 40px 40px 0 40px; /* スズメの接地感を出すために下パディングは0 */
+  position: relative; /* 重なり順をブラウザに正しく認識させるための土台 */
+  z-index: 1;
+}
+
+.senior-image-area {
+  flex-shrink: 0;
+  width: 300px;       /* 💡 外枠の横幅を固定 */
+  height: 200px;      /* 💡 外枠の高さ（はみ出させるための基準枠） */
+  position: relative;
+  overflow: visible;  /* 💡 これが最重要！枠から画像がはみ出すのを許可します */
+  z-index: 1;         /* 💡 吹き出し（z-index: 2）より数値を下げることで、指し棒を必ず背面に回します */
+  margin-right: -120px; /* 💡 吹き出しの裏側へ深く潜り込ませるマイナスマージン */
+}
+
+.senior-img {
+  position: absolute;
+  bottom: 0;          /* 💡 エリアの下端（ボトム）を基準に固定 */
+  left: 30%;
+  transform: translateX(-40%);
+
+  /* 💡 枠（250px）を無視して実質「1.5倍」の大きさで超巨大に表示させます */
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none; /* クリックなどの邪魔をしない設定 */
+}
+
+.senior-bubble {
+  position: relative;
+  z-index: 2; /* 💡 スズメ（z-index: 1）の上に完全に被さるように階層を上に設定 */
+  background: var(--color-main-bg);
+  border-radius: 20px;
+  padding: 30px 40px;
+  flex-grow: 1;
+  margin-bottom: 30px; /* 巨大になったスズメの顔の横に吹き出しが綺麗に並ぶよう、下部余白を調整 */
+}
+
+/* 吹き出しの三角 */
+.senior-bubble::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 15px 20px 15px 0;
+  border-color: transparent var(--color-main-bg) transparent transparent;
+}
+
+.senior-name {
+  font-size: 24px; /* コントラスト向上のため少しだけサイズアップ */
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+.senior-text {
+  font-size: 16px;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+@keyframes pyokoIn {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   3. ABOUT
+   ========================================================================== */
+.about-section {
+  max-width: 1200px;
+  margin: 30px auto 80px;
+  padding: 50px 60px;
+  background: var(--color-main-bg);
+  border-radius: 30px;
+}
+.section-title-en {
+  font-size: 40px;
+  color: var(--color-accent);
+  margin-bottom: 20px;
+}
+.about-lead {
+  font-family: var(--font-title); /* リード文も優しく際立たせます */
+  font-weight: 900;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+.about-text {
+  font-size: 17px;
+  max-width: 950px;
+  color: var(--color-text);
+  margin-bottom: 30px;
+}
+.senpai-onepoint-box {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 20px 30px;
+}
+.onepoint-badge {
+  display: inline-block;
+  background: var(--color-white);
+  color: var(--color-main);
+  font-size: 14px;
+  padding: 3px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 2px solid var(--color-main-bg); /* 少し枠をつけてバッジ感をアップ */
+}
+.onepoint-text {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   🐾 4. 鳥の足跡（画像を使わず、CSSの丸4つだけでスズメの足跡を再現）
+   ========================================================================== */
+.footprint-track-bg {
+  width: 100%;
+  padding: 40px 0;
+
+  /* 💡 CSSの「丸（円）」を4つ組み合わせてスズメの足跡を1歩分描きます */
+  background-image:
+    /* ① 真ん中の指 */
+    radial-gradient(circle, rgba(184, 139, 92, 0.25) 3px, transparent 3.5px),
+    /* ② 左 of 指 */
+    radial-gradient(circle, rgba(184, 139, 92, 0.25) 2.5px, transparent 3px),
+    /* ③ 右 of 指 */
+    radial-gradient(circle, rgba(184, 139, 92, 0.25) 2.5px, transparent 3px),
+    /* ④ かかと */
+    radial-gradient(circle, rgba(184, 139, 92, 0.25) 3px, transparent 3.5px);
+
+  /* 💡 縦に1列だけ繰り返します */
+  background-repeat: repeat-y;
+
+  /* 💡 足跡の大きさ（1歩のスペースを「横幅 40px × 高さ 120px」に設定） */
+  background-size: 40px 120px;
+
+  /* 💡 それぞれの丸を配置して、鳥の足跡の形（▲のような指の広がり）にします */
+  background-position:
+    right 35px top 10px,  /* ① 真ん中の指（上側） */
+    right 45px top 18px,  /* ② 左の指（斜め左下） */
+    right 25px top 18px,  /* ③ 右の指（斜め右下） */
+    right 35px top 23px;  /* ④ かかと（一番下） */
+}
+
+/* ==========================================================================
+   5. 身近な鳥紹介：美しい正円グリッド ＆ 写真を隠さない吹き出し解説
+   ========================================================================== */
+.bird-intro-section, .lucky-bird-section {
+  position: relative; /* 💡 飛ぶ鳥を絶対位置（absolute）で配置するための基準点 */
+  margin: 40px auto 100px;
+  padding: 0 40px;
+  transition: max-width 0.3s ease;
+}
+
+/* 💡 身近な鳥紹介：左側を飛ぶ鳥（右＝内側を向くように左右反転させます） */
+.bird-intro-section::before {
+  content: "";
+  position: absolute;
+  left: -120px; /* 枠外の空きスペースに配置 */
+  top: 15%;
+  width: 110px; /* 💡 1羽が綺麗に収まるサイズ */
+  height: 90px;
+  background-image: url("../image/Cha_suzume_fly.png"); /* 💡 正しい画像パスに統一 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.15; /* 背景に優しく馴染む薄さ */
+
+  /* 💡 scaleX(-1) で反転させて「右（内側）」を向かせつつ、少し上昇させます */
+  transform: scaleX(-1) rotate(-10deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 💡 身近な鳥紹介：右側を飛ぶ鳥（元々左向きなので、そのまま左＝内側を向いて飛びます） */
+.bird-intro-section::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: 20%;
+  width: 110px;
+  height: 90px;
+  background-image: url("../image/Cha_suzume_fly.png"); /* 💡 正しい画像パスに統一 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+
+  /* 💡 元々左を向いているので、反転はせず、そのまま左（内側）に向かって少し上昇させます */
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── 💡 4個並ぶとき（画面が十分に広いPC） ── */
+@media (min-width: 1400px) {
+  .bird-intro-section, .lucky-bird-section {
+    /* 240px × 4列 + 隙間40px × 3 ＝ 1080px
+       画面の両サイドに吹き出し(280px)がはみ出さないたっぷりの均等余白をキープ */
+    max-width: 1080px;
+  }
+}
+
+/* ── 💡 3個並ぶとき（標準的なノートPCなど） ── */
+@media (max-width: 1399px) and (min-width: 1101px) {
+  .bird-intro-section, .lucky-bird-section {
+    /* 240px × 3列 + 隙間40px × 2 ＝ 800px
+       3列の左右に大きな安全スペースを作り、吹き出しのはみ出しを完全ガード */
+    max-width: 800px;
+  }
+}
+
+.section-title {
+  font-size: 32px;
+  color: var(--color-accent);
+  margin-bottom: 50px;
+  border-left: 8px solid var(--color-main);
+  padding-left: 20px;
+}
+
+/* PC用グリッド配置 */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  column-gap: 40px;  /* 左右の隙間 */
+  row-gap: 120px;    /* 上下の隙間 */
+  justify-items: center;
+}
+
+/* 鳥カード（親要素） */
+.grid-item {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: var(--color-white);
+  cursor: pointer;
+}
+
+/* 背景の装飾用の外円 */
+.bg-circle {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 4px solid var(--color-main-bg);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+  z-index: 1;
+}
+
+/* 鳥の写真 */
+.item-image {
+  position: absolute;
+  top: 8px; left: 8px; width: 224px; height: 224px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.item-image img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* 写真の下部に常時重ねる、鳥の名前ラベル */
+.bird-name-label {
+  position: relative;
+  z-index: 2;
+  background: rgba(74, 59, 50, 0.85);
+  color: var(--color-white);
+  width: 100%;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  font-family: var(--font-title); /* ラベル文字も可愛く丸みのあるフォントに */
+}
+
+/* ─────────────────────────────────────────────────────────
+   ✨ PC用：ホバーすると「斜め右上」に飛び出す吹き出し
+   ───────────────────────────────────────────────────────── */
+.hover-bubble-panel {
+  position: absolute;
+  /* 円の右上（2時方向）の隙間に心地よく収まる配置 */
+  bottom: 85%;
+  left: 65%;
+
+  /* 左下を起点にして、斜め右上へふわっと広がるアニメーション */
+  transform: scale(0.9);
+  transform-origin: left bottom;
+
+  width: 280px;
+  background: var(--color-white);
+  border: 3px solid var(--color-main);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(45, 36, 30, 0.15);
+
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15), visibility 0.3s;
+  pointer-events: none; /* マウス当たり判定スルー */
+}
+
+/* 三角矢印のデザイン */
+.hover-bubble-panel::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: -15px;
+  border-style: solid;
+  border-width: 15px 15px 0 0;
+  border-color: var(--color-main) transparent transparent transparent;
+}
+.hover-bubble-panel::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  bottom: -11px;
+  border-style: solid;
+  border-width: 12px 12px 0 0;
+  border-color: var(--color-white) transparent transparent transparent;
+}
+
+/* 吹き出し内テキスト */
+.hover-bubble-panel .title {
+  font-size: 18px;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--color-main-bg);
+  padding-bottom: 4px;
+}
+.hover-bubble-panel .description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text);
+  text-align: justify;
+}
+
+/* 🌟 PC用ホバー時挙動 */
+.grid-item:hover .item-image { transform: scale(1.04); }
+.grid-item:hover .bg-circle { transform: scale(1.06); border-color: var(--color-main); }
+.grid-item:hover .hover-bubble-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1); /* 斜め上に元のサイズでパッと開く */
+}
+
+/* 後半レイアウト調整 */
+.intro-next-area { text-align: center; margin-top: 60px; padding: 20px; grid-column: 1 / -1; }
+.next-lead {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+.spot-button-inline {
+  display: inline-block; background: var(--color-main); color: var(--color-white);
+  text-decoration: none; font-size: 18px; padding: 14px 40px; border-radius: 50px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.spot-button-inline:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
+
+
+/* ==========================================================================
+   6. 🍀 出会えたらラッキーな鳥たち（こちらも左右に飛ばします）
+   ========================================================================== */
+/* 💡 ラッキー鳥セクション：左側を飛ぶ鳥（右＝内側を向くように左右反転） */
+.lucky-bird-section::before {
+  content: "";
+  position: absolute;
+  left: -130px;
+  bottom: 10%;
+  width: 95px; /* 少しサイズを変えて遠近感を出します */
+  height: 78px;
+  background-image: url("../image/Cha_suzume_fly.png"); /* 💡 正しい画像パスに統一 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+
+  /* 💡 右（内側）に向けて反転し、パタパタしている上向き角度にします */
+  transform: scaleX(-1) rotate(15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 💡 ラッキー鳥セクション：右側を飛ぶ鳥（そのまま左＝内側を向いて飛びます） */
+.lucky-bird-section::after {
+  content: "";
+  position: absolute;
+  right: -110px;
+  top: 25%;
+  width: 115px;
+  height: 94px;
+  background-image: url("../image/Cha_suzume_fly.png"); /* 💡 正しい画像パスに統一 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+
+  /* 💡 そのまま左（内側）に向けて飛ばします */
+  transform: rotate(-5deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.message-section { max-width: 1200px; margin: 100px auto; padding: 0 40px; }
+.message-title { font-size: 32px; text-align: center; margin-bottom: 40px; color: var(--color-accent); }
+.manner-box { background: var(--color-main-bg); border-radius: 30px; padding: 40px 60px; }
+.manner-title { font-size: 26px; margin-bottom: 15px; color: var(--color-accent); }
+.manner-text { font-size: 18px; color: var(--color-text); }
+.navigation-section { text-align: center; margin: 80px auto 100px; }
+.spot-button {
+  display: inline-block; background: var(--color-main); color: var(--color-white); text-decoration: none;
+  font-size: 22px; padding: 15px 50px; border-radius: 50px; transition: background-color 0.3s, transform 0.2s;
+}
+.spot-button:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
+.footer { background: var(--color-main-bg); width: 100%; height: 56px; display: flex; align-items: center; justify-content: flex-end; padding-right: 50px; }
+.copyright { font-size: 15px; color: var(--color-text); }
+
+/* ==========================================================================
+   7. スマートフォン・タブレット対応：タッチ操作を想定した画面幅（1100px以下）
+   ========================================================================== */
+@media (max-width: 1100px) {
+  /* 💡 スマホ時は、画面はみ出し（横揺れバグ）防止のため飛ばしている鳥たちを非表示にします */
+  .bird-intro-section::before,
+  .bird-intro-section::after,
+  .lucky-bird-section::before,
+  .lucky-bird-section::after {
+    display: none !important;
+  }
+
+  .bird-intro-section, .lucky-bird-section {
+    max-width: 100%;
+  }
+
+  /* スマホ環境では上下の余分な隙間をリセットしてスッキリ並べます */
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px 30px;
+  }
+
+  /* カードの構造を縦並びに */
+  .grid-item {
+    width: 240px;
+    height: auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bg-circle {
+    position: relative;
+    width: 240px;
+    height: 240px;
+  }
+  .item-image {
+    position: absolute;
+    width: 224px;
+    height: 224px;
+    top: 8px;
+    left: 8px;
+  }
+
+  /* タッチ環境用：常時表示の解説パネルスタイル（画像の下にきれいに並びます） */
+  .hover-bubble-panel {
+    position: relative;
+    bottom: auto; left: auto; /* 位置リセット */
+    transform: none !important;
+    width: 100%;
+    margin-top: 20px;
+    background: var(--color-white);
+    border: 2px solid var(--color-main-bg);
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
+  }
+
+  /* 矢印（三角）を非表示に */
+  .hover-bubble-panel::before,
+  .hover-bubble-panel::after {
+    display: none;
+  }
+
+  .hover-bubble-panel .title { font-size: 16px; text-align: center; }
+  .hover-bubble-panel .description { font-size: 13px; line-height: 1.5; }
+
+  .grid-item:hover .item-image,
+  .grid-item:hover .bg-circle { transform: none; }
+}
+
+/* ── さらに画面幅が狭いスマートフォン（768px以下） ── */
+@media (max-width: 768px) {
+  .site-logo-header { left: 20px; top: 30px; font-size: 26px; }
+  .main-visual { min-height: 500px; padding-top: 120px; }
+
+  /* 💡スマホ時：スズメと吹き出しを縦並びにして、下端（ボトム）揃えにします */
+  .senior-container {
+    flex-direction: column;
+    padding: 30px 20px 0 20px; /* スズメが接地するため下パディングを0に */
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* 💡スマホ時：PC用の横方向への重なり（マイナスマージン）をリセットし、中央にドカンと配置 */
+  .senior-image-area {
+    width: 220px; /* スマホでもしっかり大きいサイズに調整 */
+    height: 160px; /* 高さを抑えてはみ出させる土台を作ります */
+    margin-right: 0; /* PC用の右ズレをリセット */
+    order: 2; /* 吹き出しの下（2番目）に配置します */
+  }
+
+  /* 💡スマホ時：PC用の中央ズレ調整をリセットし、ボトムアップで体の一部を切る */
+  .senior-img {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%; /* 160px of height */
+    height: 120%;
+  }
+
+  /* 💡スマホ時：スズメの上に配置する吹き出し */
+  .senior-bubble {
+    width: 100%;
+    margin-bottom: 10px;
+    order: 1; /* スズメの上（1番目）に配置します */
+  }
+
+  /* 💡スマホ用の三角：吹き出しの下側に配置して、下（スズメ）を指すようにします */
+  .senior-bubble::before {
+    left: 50%;
+    top: auto;
+    bottom: -15px; /* 吹き出しの下側に配置 */
+    transform: translateX(-50%);
+    border-width: 15px 15px 0 15px; /* 下向きの三角 */
+    border-color: var(--color-main-bg) transparent transparent transparent;
+  }
+
+  .about-section, .manner-box { padding: 35px 25px; border-radius: 20px; }
+  .section-title, .message-title { font-size: 26px; }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 50px 20px;
+  }
+
+  .grid-item { width: 200px; }
+  .bg-circle { width: 200px; height: 200px; }
+  .item-image { width: 186px; height: 186px; top: 7px; left: 7px; }
+  .bird-name-label { font-size: 14px; padding: 4px 0; }
+
+  .hover-bubble-panel { margin-top: 15px; padding: 12px; }
+  .hover-bubble-panel .title { font-size: 15px; }
+  .hover-bubble-panel .description { font-size: 12px; }
+
+  .manner-title { font-size: 22px; }
+  .manner-text { font-size: 16px; }
+  .spot-button, .spot-button-inline { font-size: 18px; padding: 12px 30px; width: 100%; max-width: 340px; }
+  .footer { justify-content: center; padding-right: 0; }
+}
