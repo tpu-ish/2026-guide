@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>とりみっけスポット紹介！｜とりみっけ。</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+
+<div class="second-page">
+
+  <!-- 上部ヘッダーバー -->
+  <header class="site-header-bar">
+    <div class="header-logo">とりみっけ。</div>
+    <div class="header-nav">
+      <a href="./main.html" class="back-link">→ TOPへもどる</a>
+    </div>
+
+    <!-- ハンバーガーメニュー -->
+    <div class="hamburger-menu">
+      <input type="checkbox" id="menu-btn-check" class="menu-btn-check">
+      <label for="menu-btn-check" class="menu-btn"><span></span></label>
+      <nav class="nav-content">
+        <ul class="nav-list">
+          <li><a href="./main.html">TOPへもどる</a></li>
+          <li><a href="#town">街中</a></li>
+          <li><a href="#park">公園</a></li>
+          <li><a href="#river">川</a></li>
+        </ul>
+      </nav>
+      <label for="menu-btn-check" class="nav-overlay"></label>
+    </div>
+  </header>
+
+  <!-- メインタイトルエリア -->
+  <div class="hero-title-area">
+    <h1 class="main-title">とりみっけスポット紹介！</h1>
+    <p class="main-subtitle">
+      よくいる場所を知るだけで鳥が見つけやすくなる！<br />
+      身近な鳥たちに出会いやすい、3つのエリアを紹介します。
+    </p>
+  </div>
+
+  <!-- そっと見守る優しい約束（マナーセクション） -->
+  <section class="manner-section">
+    <div class="manner-card">
+      <h2 class="manner-title">そっと見守る優しい約束</h2>
+      <p class="manner-text">
+        鳥たちに出会ったら、驚かせないようにそっと離れて見守りましょう。<br />
+        静かに、やさしく、いつもの景色をそっと共有させてもらうのがルールです。
+      </p>
+    </div>
+  </section>
+
+  <!-- スポット紹介メインコンテンツ -->
+  <main class="spots-list">
+
+    <!-- エリア1：街中 -->
+    <section class="spot-item" id="town">
+      <div class="spot-content-inner">
+        <h2 class="spot-heading">街中</h2>
+
+        <div class="map-wrapper">
+          <div class="map-bg">
+            <img src="image/Town.png" alt="街中の様子" class="map-bg-img" />
+          </div>
+
+          <!-- 🏷️ ツールチップ（.pin-tooltip）を追加 -->
+          <div class="map-pin pin-1">
+            <img src="image/Town_Karasu.png" alt="カラス" class="pin-bird-img" />
+            <span class="pin-tooltip">カラス</span>
+          </div>
+          <div class="map-pin pin-2">
+            <img src="image/Town_Suzume.png" alt="スズメ" class="pin-bird-img" />
+            <span class="pin-tooltip">スズメ</span>
+          </div>
+          <div class="map-pin pin-3">
+            <img src="image/Town_Sekirei.png" alt="ハクセキレイ" class="pin-bird-img" />
+            <span class="pin-tooltip">ハクセキレイ</span>
+          </div>
+        </div>
+
+        <p class="spot-desc">
+          歩道をぴょんぴょん跳ねるスズメや、電柱のてっぺんから街を見下ろすカラス、電線でおしゃべりするムクドリたちに出会えます。
+        </p>
+      </div>
+    </section>
+
+    <!-- エリア2：公園 -->
+    <section class="spot-item" id="park">
+      <div class="spot-content-inner">
+        <h2 class="spot-heading">公園</h2>
+
+        <div class="map-wrapper">
+          <div class="map-bg">
+            <img src="image/Park.png" alt="公園の様子" class="map-bg-img" />
+          </div>
+
+          <div class="map-pin pin-4">
+            <img src="image/Park_Tobi.png" alt="トビ" class="pin-bird-img" />
+            <span class="pin-tooltip">トビ</span>
+          </div>
+          <div class="map-pin pin-5">
+            <img src="image/Park_Dobato.png" alt="ドバト" class="pin-bird-img" />
+            <span class="pin-tooltip">ドバト</span>
+          </div>
+          <div class="map-pin pin-6">
+            <img src="image/Park_Hiyodori.png" alt="ヒヨドリ" class="pin-bird-img" />
+            <span class="pin-tooltip">ヒヨドリ</span>
+          </div>
+        </div>
+
+        <p class="spot-desc">
+          緑豊かな公園は鳥たちのオアシスです。芝生の上を忙しく歩き回るムクドリやハト、<br />
+          木の幹のまわりをボサボサ頭で飛び交うヒヨドリの賑やかな声が聞こえてきます。<br />
+          運が良ければ、キリッとした顔のモズに出会えることも。
+        </p>
+      </div>
+    </section>
+
+    <!-- エリア3：川 -->
+    <section class="spot-item" id="river">
+      <div class="spot-content-inner">
+        <h2 class="spot-heading">川</h2>
+
+        <div class="map-wrapper">
+          <div class="map-bg">
+            <img src="image/River.png" alt="川の様子" class="map-bg-img" />
+          </div>
+
+          <div class="map-pin pin-7">
+            <img src="image/River_Onaga.png" alt="オナガ" class="pin-bird-img" />
+            <span class="pin-tooltip">オナガ</span>
+          </div>
+          <div class="map-pin pin-8">
+            <img src="image/River_Karugamo.png" alt="カルガモ" class="pin-bird-img" />
+            <span class="pin-tooltip">カルガモ</span>
+          </div>
+          <div class="map-pin pin-9">
+            <img src="image/River_Kosagi.png" alt="コサギ" class="pin-bird-img" />
+            <span class="pin-tooltip">コサギ</span>
+          </div>
+        </div>
+
+        <p class="spot-desc">
+          川沿いへ行くと、ガラリと出会える鳥が変わります。浅瀬で足をピョコピョコ動かして魚を探す真っ白なコサギや、<br />
+          水際を尾羽を振りながら早歩きするセキレイ、放置されたゴミをついばむカラス、空を優雅に円を描いて飛ぶトビを見上げるチャンスです。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッターバー -->
+  <footer class="footer">
+    <p class="copyright">2026年度 Web演習にて作成</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
