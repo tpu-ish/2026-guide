@@ -13,6 +13,23 @@
   <!-- メインビジュアル ＆ ヘッダー -->
   <header class="main-visual">
     <div class="site-logo-header">とりみっけ。</div>
+
+    <!-- ハンバーガーメニュー -->
+    <div class="hamburger-menu">
+      <input type="checkbox" id="menu-btn-check" class="menu-btn-check">
+      <label for="menu-btn-check" class="menu-btn"><span></span></label>
+      <nav class="nav-content">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#bird-intro">身近な鳥紹介！</a></li>
+          <li><a href="#lucky-bird">見れたらちょっとラッキーな鳥たち！</a></li>
+          <li><a href="#message">外に出て鳥を見つけてみよう！</a></li>
+          <li><a href="./sub.html">とりみっけスポット紹介！ →</a></li>
+        </ul>
+      </nav>
+      <label for="menu-btn-check" class="nav-overlay"></label>
+    </div>
+
     <h1 class="catchphrase">すぐそこに。 いつもの景色が、ちょっと愛おしくなる。</h1>
   </header>
 
@@ -33,7 +50,7 @@
   </section>
 
   <!-- ABOUT セクション -->
-  <section class="about-section">
+  <section class="about-section" id="about">
     <h2 class="section-title-en">ABOUT</h2>
     <p class="about-lead">「とりみっけ。」へようこそ。</p>
     <p class="about-text">
@@ -42,15 +59,15 @@
     </p>
 
     <div class="senpai-onepoint-box">
-      <div class="onepoint-badge">すずめ先輩のアドバイス</div>
-      <p class="onepoint-text">難しい機材なんていらない！鳥を見たい気持ちと、ちょっとした知識があれば十分だよ！</p>
+      <div class="onepoint-badge">すずめんのアドバイス</div>
+      <p class="onepoint-text">難しい機材なんていらないよ！鳥を見たい気持ちと、ちょっとした知識があれば十分！</p>
     </div>
   </section>
 
   <div class="footprint-track-bg">
 
     <!-- 身近な鳥紹介 セクション -->
-    <section class="bird-intro-section">
+    <section class="bird-intro-section" id="bird-intro">
       <h2 class="section-title">身近な鳥紹介！</h2>
       <div class="grid-container">
 
@@ -106,7 +123,7 @@
         <div class="grid-item">
           <div class="bg-circle"></div>
           <div class="item-image">
-            <img src="https://placehold.co/340x340/eddcc9" alt="ムクドリの画像">
+            <img src="image/Int_mukudori.jpg" alt="ムクドリの画像">
             <span class="bird-name-label">ムクドリ</span>
           </div>
           <div class="hover-bubble-panel">
@@ -164,14 +181,10 @@
 
       </div>
 
-      <div class="intro-next-area">
-        <p class="next-lead">「この鳥たちには、どこに行けば会えるの？」</p>
-        <a href="./sub.html" class="spot-button-inline">とりみっけスポット紹介を見る →</a>
-      </div>
     </section>
 
     <!-- 見れたらラッキーな鳥 セクション -->
-    <section class="lucky-bird-section">
+    <section class="lucky-bird-section" id="lucky-bird">
       <h2 class="section-title">見れたらちょっとラッキーな鳥たち！</h2>
       <div class="grid-container">
 
@@ -209,7 +222,7 @@
         <div class="grid-item">
           <div class="bg-circle"></div>
           <div class="item-image">
-            <img src="https://placehold.co/340x340/eddcc9" alt="モズの画像">
+            <img src="image/Int_mozu.jpg" alt="モズの画像">
             <span class="bird-name-label">モズ</span>
           </div>
           <div class="hover-bubble-panel">
@@ -224,7 +237,7 @@
         <div class="grid-item">
           <div class="bg-circle"></div>
           <div class="item-image">
-            <img src="https://placehold.co/340x340/eddcc9" alt="オナガの画像">
+            <img src="image/Int_onaga.jpg" alt="オナガの画像">
             <span class="bird-name-label">オナガ</span>
           </div>
           <div class="hover-bubble-panel">
@@ -240,7 +253,7 @@
 
   </div> <!-- /footprint-track-bg -->
 
-  <section class="message-section">
+  <section class="message-section" id="message">
     <h2 class="message-title">外に出て鳥を見つけてみよう！</h2>
     <div class="manner-box">
       <h3 class="manner-title">そっと見守る優しい約束</h3>

@@ -16,6 +16,21 @@
     <div class="header-nav">
       <a href="./main.html" class="back-link">→ TOPへもどる</a>
     </div>
+
+    <!-- ハンバーガーメニュー -->
+    <div class="hamburger-menu">
+      <input type="checkbox" id="menu-btn-check" class="menu-btn-check">
+      <label for="menu-btn-check" class="menu-btn"><span></span></label>
+      <nav class="nav-content">
+        <ul class="nav-list">
+          <li><a href="./main.html">TOPへもどる</a></li>
+          <li><a href="#town">街中</a></li>
+          <li><a href="#park">公園</a></li>
+          <li><a href="#river">川</a></li>
+        </ul>
+      </nav>
+      <label for="menu-btn-check" class="nav-overlay"></label>
+    </div>
   </header>
 
   <!-- メインタイトルエリア -->
@@ -41,24 +56,29 @@
   <!-- スポット紹介メインコンテンツ -->
   <main class="spots-list">
 
-    <!-- エリア1：ビルや街路樹 -->
-    <section class="spot-item">
+    <!-- エリア1：街中 -->
+    <section class="spot-item" id="town">
       <div class="spot-content-inner">
-        <h2 class="spot-heading">ビルや街路樹</h2>
+        <h2 class="spot-heading">街中</h2>
 
-        <!-- マップコンテナ（この領域を基準にしてピンと線を絶対配置） -->
         <div class="map-wrapper">
-          <div class="map-bg"></div>
+          <div class="map-bg">
+            <img src="image/Town.png" alt="街中の様子" class="map-bg-img" />
+          </div>
 
-          <!-- 装飾用の引き出し線（SVG） -->
-          <img class="map-line line-1" src="line-10.svg" alt="" />
-          <img class="map-line line-2" src="line-20.svg" alt="" />
-          <img class="map-line line-3" src="line-30.svg" alt="" />
-
-          <!-- 鳥の丸型ピンパーツ -->
-          <div class="map-pin pin-1"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-2"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-3"><div class="pin-inner-circle"></div></div>
+          <!-- 🏷️ ツールチップ（.pin-tooltip）を追加 -->
+          <div class="map-pin pin-1">
+            <img src="image/Town_Karasu.png" alt="カラス" class="pin-bird-img" />
+            <span class="pin-tooltip">カラス</span>
+          </div>
+          <div class="map-pin pin-2">
+            <img src="image/Town_Suzume.png" alt="スズメ" class="pin-bird-img" />
+            <span class="pin-tooltip">スズメ</span>
+          </div>
+          <div class="map-pin pin-3">
+            <img src="image/Town_Sekirei.png" alt="ハクセキレイ" class="pin-bird-img" />
+            <span class="pin-tooltip">ハクセキレイ</span>
+          </div>
         </div>
 
         <p class="spot-desc">
@@ -68,20 +88,27 @@
     </section>
 
     <!-- エリア2：公園 -->
-    <section class="spot-item">
+    <section class="spot-item" id="park">
       <div class="spot-content-inner">
         <h2 class="spot-heading">公園</h2>
 
         <div class="map-wrapper">
-          <div class="map-bg"></div>
+          <div class="map-bg">
+            <img src="image/Park.png" alt="公園の様子" class="map-bg-img" />
+          </div>
 
-          <img class="map-line line-32" src="line-31.svg" alt="" />
-          <img class="map-line line-4" src="line-40.svg" alt="" />
-          <img class="map-line line-5" src="line-50.svg" alt="" />
-
-          <div class="map-pin pin-4"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-5"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-6"><div class="pin-inner-circle"></div></div>
+          <div class="map-pin pin-4">
+            <img src="image/Park_Tobi.png" alt="トビ" class="pin-bird-img" />
+            <span class="pin-tooltip">トビ</span>
+          </div>
+          <div class="map-pin pin-5">
+            <img src="image/Park_Dobato.png" alt="ドバト" class="pin-bird-img" />
+            <span class="pin-tooltip">ドバト</span>
+          </div>
+          <div class="map-pin pin-6">
+            <img src="image/Park_Hiyodori.png" alt="ヒヨドリ" class="pin-bird-img" />
+            <span class="pin-tooltip">ヒヨドリ</span>
+          </div>
         </div>
 
         <p class="spot-desc">
@@ -93,20 +120,27 @@
     </section>
 
     <!-- エリア3：川 -->
-    <section class="spot-item">
+    <section class="spot-item" id="river">
       <div class="spot-content-inner">
         <h2 class="spot-heading">川</h2>
 
         <div class="map-wrapper">
-          <div class="map-bg"></div>
+          <div class="map-bg">
+            <img src="image/River.png" alt="川の様子" class="map-bg-img" />
+          </div>
 
-          <img class="map-line line-52" src="line-51.svg" alt="" />
-          <img class="map-line line-6" src="line-60.svg" alt="" />
-          <img class="map-line line-7" src="line-70.svg" alt="" />
-
-          <div class="map-pin pin-7"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-8"><div class="pin-inner-circle"></div></div>
-          <div class="map-pin pin-9"><div class="pin-inner-circle"></div></div>
+          <div class="map-pin pin-7">
+            <img src="image/River_Onaga.png" alt="オナガ" class="pin-bird-img" />
+            <span class="pin-tooltip">オナガ</span>
+          </div>
+          <div class="map-pin pin-8">
+            <img src="image/River_Karugamo.png" alt="カルガモ" class="pin-bird-img" />
+            <span class="pin-tooltip">カルガモ</span>
+          </div>
+          <div class="map-pin pin-9">
+            <img src="image/River_Kosagi.png" alt="コサギ" class="pin-bird-img" />
+            <span class="pin-tooltip">コサギ</span>
+          </div>
         </div>
 
         <p class="spot-desc">
@@ -119,8 +153,8 @@
   </main>
 
   <!-- フッターバー -->
-  <footer class="site-footer">
-    <p class="footer-copy">2026年度 Web演習にて作成</p>
+  <footer class="footer">
+    <p class="copyright">2026年度 Web演習にて作成</p>
   </footer>
 
 </div>
