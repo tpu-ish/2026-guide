@@ -1,0 +1,569 @@
+/* ==========================================================================
+   0. 変数定義（:root）
+   ========================================================================== */
+:root {
+  --color-base: #fbf8f3;
+  --color-main: #b88b5c;
+  --color-main-bg: #eddcc9;
+  --color-accent: #4a3b32;
+  --color-accent-hover: #73573c;
+  --color-text: #2d241e;
+  --color-white: #ffffff;
+
+  --font-title: "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --font-body: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   1. 共通設定とリセット
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.second-page {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-logo,
+.back-link,
+.main-title,
+.manner-title,
+.spot-heading,
+.spot-back-btn,
+.pagetop-btn {
+  font-family: var(--font-title);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   2. 上部ヘッダーバー
+   ========================================================================== */
+.site-header-bar {
+  background: var(--color-accent);
+  border-bottom: 4px solid var(--color-main);
+  width: 100%;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  position: relative;
+}
+
+.header-logo {
+  font-size: 32px;
+  color: var(--color-white);
+}
+
+.header-nav {
+  margin-right: 80px; /* ハンバーガーボタンとの重なり回避 */
+}
+
+.back-link {
+  font-size: 18px;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+  color: var(--color-main-bg);
+}
+
+/* ==========================================================================
+   ハンバーガーメニュー (CSS Only)
+   ========================================================================== */
+.hamburger-menu {
+  position: fixed;
+  top: 25px;
+  right: 40px;
+  z-index: 1000;
+}
+
+.menu-btn-check {
+  display: none;
+}
+
+.menu-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.menu-btn:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 26px;
+  border-radius: 3px;
+  background-color: var(--color-white);
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn span::before {
+  bottom: 8px;
+}
+
+.menu-btn span::after {
+  top: 8px;
+}
+
+.menu-btn-check:checked ~ .menu-btn span {
+  background-color: transparent;
+}
+
+.menu-btn-check:checked ~ .menu-btn span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.menu-btn-check:checked ~ .menu-btn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.nav-content {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background: var(--color-base);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 100px 30px 40px;
+  transition: right 0.4s ease;
+  z-index: 999;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 24px;
+  border-bottom: 1px dashed var(--color-main-bg);
+  padding-bottom: 12px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--color-accent);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-list a:hover {
+  color: var(--color-main);
+  transform: translateX(5px);
+}
+
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 998;
+}
+
+.menu-btn-check:checked ~ .nav-content {
+  right: 0;
+}
+
+.menu-btn-check:checked ~ .nav-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   3. メインタイトルエリア
+   ========================================================================== */
+.hero-title-area {
+  max-width: 1200px;
+  margin: 60px auto 40px;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 40px;
+  color: var(--color-accent);
+  margin-bottom: 20px;
+  display: inline-block;
+  border-bottom: 4px solid var(--color-main-bg);
+  padding-bottom: 8px;
+}
+
+.main-subtitle {
+  font-size: 18px;
+  color: var(--color-text);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   4. マナーカード
+   ========================================================================== */
+.manner-section {
+  max-width: 1200px;
+  margin: 40px auto 60px;
+  padding: 0 40px;
+}
+
+.manner-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-main-bg);
+  border-radius: 30px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 60px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.manner-title {
+  font-size: 26px;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+}
+
+.manner-text {
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   5. スポット紹介 ＆ マップエリア
+   ========================================================================== */
+.spots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto 100px;
+  padding: 0 40px;
+}
+
+.spot-item {
+  background: var(--color-main-bg);
+  border-radius: 30px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 30px 40px;
+  box-shadow: 0 6px 20px rgba(45, 36, 30, 0.05);
+  scroll-margin-top: 40px;
+}
+
+.spot-content-inner {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.spot-heading {
+  font-size: 32px;
+  color: var(--color-accent);
+  align-self: flex-start;
+  padding-left: 20px;
+  margin-left: 10px;
+  border-left: 8px solid var(--color-main);
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+}
+
+.map-bg {
+  background: var(--color-white);
+  border: 4px solid var(--color-base);
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.map-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.map-pin {
+  background: var(--color-white);
+  border: 0.3vw solid var(--color-white);
+  border-radius: 50%;
+  width: 13.5%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.4vw 1.2vw rgba(45, 36, 30, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.pin-bird-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
+
+.pin-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pin-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--color-accent) transparent transparent transparent;
+}
+
+.map-pin:hover {
+  transform: scale(1.15);
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.25);
+  z-index: 99;
+}
+
+.map-pin:hover .pin-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.spot-desc {
+  font-size: 17px;
+  text-align: center;
+  max-width: 950px;
+  padding: 0 20px;
+  color: var(--color-text);
+}
+
+/* --- 各スポットの下部に戻るボタン --- */
+.spot-back-area {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.spot-back-btn {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: 16px;
+  padding: 10px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spot-back-btn:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   📍 円（ピン）の配置場所設定
+   ========================================================================== */
+
+/* --- エリア1（街中） --- */
+.pin-1 { left: 29.5%; top: 6%; }
+.pin-2 { left: 70%; top: 75%; }
+.pin-3 { left: 26%; top: 71%; }
+
+/* --- エリア2（公園） --- */
+.pin-4 { left: 30%; top: 8%; }
+.pin-5 { left: 63%; top: 60%; }
+.pin-6 { left: 80%; top: 35%; }
+
+/* --- エリア3（川） --- */
+.pin-7 { left: 57%; top: 0%; }
+.pin-8 { left: 43%; top: 75%; }
+.pin-9 { left: 56%; top: 77%; }
+
+/* ==========================================================================
+   6. 画面左下固定「ページ上部に戻る」ボタン
+   ========================================================================== */
+.pagetop-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 2px solid var(--color-white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pagetop-btn:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   7. フッター
+   ========================================================================== */
+.footer {
+  background: var(--color-main-bg);
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+
+.copyright {
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   8. レスポンシブ調整
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .main-title { font-size: 32px; }
+  .main-subtitle { font-size: 16px; }
+  .manner-card { padding: 30px; }
+  .manner-title { font-size: 24px; }
+  .manner-text { font-size: 16px; }
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu { top: 15px; right: 20px; }
+  .menu-btn { width: 50px; height: 50px; }
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after { width: 22px; }
+
+  .header-nav { display: none; } /* スマホ時はメニュー内に戻るリンクがあるため非表示 */
+
+  .hero-title-area, .manner-section, .spots-list {
+    padding: 0 20px;
+  }
+  .site-header-bar {
+    padding: 0 20px;
+    height: 90px;
+  }
+  .header-logo { font-size: 26px; }
+  .main-title { font-size: 26px; }
+  .main-subtitle { font-size: 15px; }
+  .manner-card {
+    padding: 25px 20px;
+    border-radius: 20px;
+  }
+  .manner-title { font-size: 22px; }
+  .spot-item {
+    padding: 35px 20px 30px;
+    border-radius: 20px;
+  }
+  .spot-heading {
+    font-size: 24px;
+    margin-left: 0;
+    padding-left: 12px;
+    align-self: flex-start;
+  }
+  .spot-desc {
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+  }
+  .spot-back-btn {
+    font-size: 14px;
+    padding: 8px 22px;
+  }
+  .pagetop-btn {
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  .footer {
+    justify-content: center;
+    padding-right: 0;
+  }
+}
