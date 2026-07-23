@@ -1,31 +1,32 @@
-/* 0. 変数定義（:root）  */
-:root {
-  --color-base: #fbf8f3;       /* ベース背景 */
-  --color-main: #b88b5c;       /* メイン */
-  --color-main-bg: #eddcc9;    /* セクション背景・吹き出し */
-  --color-accent: #4a3b32;     /* ヘッダー背景 */
-  --color-accent-hover: #73573c; /* ホバー時 */
-  --color-text: #2d241e;       /* 文字色 */
-  --color-white: #ffffff;      /* カード内背景 */
+/* ==========================================================================
+   Variables & Reset
+   ========================================================================== */
 
-  /*  標準フォント */
-  --font-title: "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-  --font-body: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+:root {
+  --color-base: #fbf8f3;
+  --color-main: #b88b5c;
+  --color-main-bg: #eddcc9;
+  --color-accent: #4a3b32;
+  --color-accent-hover: #73573c;
+  --color-text: #2d241e;
+  --color-white: #ffffff;
+
+  --font-title: "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  --font-body: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 
-/* スムーズスクロール */
 html {
   scroll-behavior: smooth;
 }
 
-/* 1. 共通設定とリセット ＆ ヘッダー*/
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
-  background: var(--color-base);
+  background-color: var(--color-base);
   color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 400;
@@ -33,10 +34,16 @@ body {
   letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
 }
+
 .top-page {
   width: 100%;
   overflow: hidden;
 }
+
+/* ==========================================================================
+   Header & Main Visual
+   ========================================================================== */
+
 .main-visual {
   position: relative;
   width: 100%;
@@ -56,11 +63,11 @@ body {
   left: 0;
   width: 100%;
   height: 110px;
-  background: var(--color-main);
+  background-color: var(--color-main);
   z-index: 1;
 }
 
-/* タイトル・見出し共通設定 */
+/* Common Titles */
 .site-logo-header,
 .catchphrase,
 .senior-name,
@@ -87,6 +94,7 @@ body {
   color: var(--color-white);
   z-index: 2;
 }
+
 .catchphrase {
   color: var(--color-white);
   text-align: center;
@@ -97,7 +105,7 @@ body {
   line-height: 1.6;
 }
 
-/* ハンバーガーメニュー */
+/* Hamburger Menu */
 .hamburger-menu {
   position: fixed;
   top: 25px;
@@ -109,7 +117,6 @@ body {
   display: none;
 }
 
-/* ボタン本体 */
 .menu-btn {
   position: relative;
   display: flex;
@@ -129,7 +136,6 @@ body {
   background-color: var(--color-accent-hover);
 }
 
-/* 3本線 */
 .menu-btn span,
 .menu-btn span::before,
 .menu-btn span::after {
@@ -151,7 +157,6 @@ body {
   top: 8px;
 }
 
-/* チェック時の×変形 */
 .menu-btn-check:checked ~ .menu-btn span {
   background-color: transparent;
 }
@@ -166,14 +171,13 @@ body {
   transform: rotate(-45deg);
 }
 
-/* メニューエリア */
 .nav-content {
   position: fixed;
   top: 0;
   right: -320px;
   width: 300px;
   height: 100%;
-  background: var(--color-base);
+  background-color: var(--color-base);
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   padding: 100px 30px 40px;
   transition: right 0.4s ease;
@@ -207,21 +211,19 @@ body {
   transform: translateX(5px);
 }
 
-/* 背景オーバーレイ */
 .nav-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
   z-index: 998;
 }
 
-/* チェック時のメニュー開閉動作 */
 .menu-btn-check:checked ~ .nav-content {
   right: 0;
 }
@@ -231,7 +233,10 @@ body {
   visibility: visible;
 }
 
-/* 2. すずめんの自己紹介 */
+/* ==========================================================================
+   Intro Section
+   ========================================================================== */
+
 .senior-intro-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -243,7 +248,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   gap: 0;
-  background: var(--color-white);
+  background-color: var(--color-white);
   border-radius: 30px;
   padding: 40px 40px 0 40px;
   position: relative;
@@ -275,7 +280,7 @@ body {
 .senior-bubble {
   position: relative;
   z-index: 2;
-  background: var(--color-main-bg);
+  background-color: var(--color-main-bg);
   border-radius: 20px;
   padding: 30px 40px;
   flex-grow: 1;
@@ -298,6 +303,7 @@ body {
   color: var(--color-accent);
   margin-bottom: 12px;
 }
+
 .senior-text {
   font-size: 16px;
   color: var(--color-text);
@@ -305,24 +311,35 @@ body {
 }
 
 @keyframes pyokoIn {
-  0% { transform: translateY(30px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* 3. ABOUT */
+/* ==========================================================================
+   About Section
+   ========================================================================== */
+
 .about-section {
   max-width: 1200px;
   margin: 30px auto 80px;
   padding: 50px 60px;
-  background: var(--color-main-bg);
+  background-color: var(--color-main-bg);
   border-radius: 30px;
   scroll-margin-top: 40px;
 }
+
 .section-title-en {
   font-size: 40px;
   color: var(--color-accent);
   margin-bottom: 20px;
 }
+
 .about-lead {
   font-family: var(--font-title);
   font-weight: 900;
@@ -331,20 +348,23 @@ body {
   color: var(--color-text);
   letter-spacing: 0.05em;
 }
+
 .about-text {
   font-size: 17px;
   max-width: 950px;
   color: var(--color-text);
   margin-bottom: 30px;
 }
+
 .senpai-onepoint-box {
-  background: var(--color-white);
+  background-color: var(--color-white);
   border-radius: 20px;
   padding: 20px 30px;
 }
+
 .onepoint-badge {
   display: inline-block;
-  background: var(--color-white);
+  background-color: var(--color-white);
   color: var(--color-main);
   font-size: 14px;
   padding: 3px 12px;
@@ -352,13 +372,14 @@ body {
   margin-bottom: 8px;
   border: 2px solid var(--color-main-bg);
 }
+
 .onepoint-text {
   font-size: 16px;
   font-weight: bold;
   color: var(--color-text);
 }
 
-/* 4. 鳥の足跡 */
+/* Footprint Track Decorative */
 .footprint-track-bg {
   width: 100%;
   padding: 40px 0;
@@ -376,12 +397,16 @@ body {
     right 35px top 23px;
 }
 
-/* 5. 身近な鳥紹介 */
-.bird-intro-section, .lucky-bird-section {
+/* ==========================================================================
+   Bird Intro & Lucky Bird Grid
+   ========================================================================== */
+
+.bird-intro-section,
+.lucky-bird-section {
   position: relative;
+  max-width: 1080px;
   margin: 40px auto 100px;
   padding: 0 40px;
-  transition: max-width 0.3s ease;
   scroll-margin-top: 40px;
 }
 
@@ -417,18 +442,6 @@ body {
   z-index: 1;
 }
 
-@media (min-width: 1400px) {
-  .bird-intro-section, .lucky-bird-section {
-    max-width: 1080px;
-  }
-}
-
-@media (max-width: 1399px) and (min-width: 1101px) {
-  .bird-intro-section, .lucky-bird-section {
-    max-width: 800px;
-  }
-}
-
 .section-title {
   font-size: 32px;
   color: var(--color-accent);
@@ -450,13 +463,16 @@ body {
   width: 240px;
   height: 240px;
   border-radius: 50%;
-  background: var(--color-white);
+  background-color: var(--color-white);
   cursor: pointer;
 }
 
 .bg-circle {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 4px solid var(--color-main-bg);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
@@ -465,7 +481,10 @@ body {
 
 .item-image {
   position: absolute;
-  top: 8px; left: 8px; width: 224px; height: 224px;
+  top: 8px;
+  left: 8px;
+  width: 224px;
+  height: 224px;
   border-radius: 50%;
   overflow: hidden;
   z-index: 2;
@@ -475,8 +494,13 @@ body {
   justify-content: flex-end;
   align-items: center;
 }
+
 .item-image img {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 1;
 }
@@ -484,7 +508,7 @@ body {
 .bird-name-label {
   position: relative;
   z-index: 2;
-  background: rgba(74, 59, 50, 0.85);
+  background-color: rgba(74, 59, 50, 0.85);
   color: var(--color-white);
   width: 100%;
   text-align: center;
@@ -502,7 +526,7 @@ body {
   transform: scale(0.9);
   transform-origin: left bottom;
   width: 280px;
-  background: var(--color-white);
+  background-color: var(--color-white);
   border: 3px solid var(--color-main);
   border-radius: 18px;
   padding: 20px;
@@ -523,6 +547,7 @@ body {
   border-width: 15px 15px 0 0;
   border-color: var(--color-main) transparent transparent transparent;
 }
+
 .hover-bubble-panel::after {
   content: "";
   position: absolute;
@@ -540,6 +565,7 @@ body {
   border-bottom: 2px solid var(--color-main-bg);
   padding-bottom: 4px;
 }
+
 .hover-bubble-panel .description {
   font-size: 13px;
   line-height: 1.6;
@@ -547,28 +573,51 @@ body {
   text-align: justify;
 }
 
-.grid-item:hover .item-image { transform: scale(1.04); }
-.grid-item:hover .bg-circle { transform: scale(1.06); border-color: var(--color-main); }
+.grid-item:hover .item-image {
+  transform: scale(1.04);
+}
+
+.grid-item:hover .bg-circle {
+  transform: scale(1.06);
+  border-color: var(--color-main);
+}
+
 .grid-item:hover .hover-bubble-panel {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
 }
 
-.intro-next-area { text-align: center; margin-top: 60px; padding: 20px; grid-column: 1 / -1; }
+.intro-next-area {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  grid-column: 1 / -1;
+}
+
 .next-lead {
   font-size: 20px;
   margin-bottom: 20px;
   color: var(--color-text);
 }
+
 .spot-button-inline {
-  display: inline-block; background: var(--color-main); color: var(--color-white);
-  text-decoration: none; font-size: 18px; padding: 14px 40px; border-radius: 50px;
+  display: inline-block;
+  background-color: var(--color-main);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 18px;
+  padding: 14px 40px;
+  border-radius: 50px;
   transition: background-color 0.3s, transform 0.2s;
 }
-.spot-button-inline:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
 
-/* 6.  出会えたらラッキーな鳥たち & 固定ボタン*/
+.spot-button-inline:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Lucky Bird Pseudo Elements */
 .lucky-bird-section::before {
   content: "";
   position: absolute;
@@ -601,24 +650,68 @@ body {
   z-index: 1;
 }
 
-.message-section { max-width: 1200px; margin: 100px auto; padding: 0 40px; scroll-margin-top: 40px; }
-.message-title { font-size: 32px; text-align: center; margin-bottom: 40px; color: var(--color-accent); }
-.manner-box { background: var(--color-main-bg); border-radius: 30px; padding: 40px 60px; }
-.manner-title { font-size: 26px; margin-bottom: 15px; color: var(--color-accent); }
-.manner-text { font-size: 18px; color: var(--color-text); }
-.navigation-section { text-align: center; margin: 80px auto 100px; }
-.spot-button {
-  display: inline-block; background: var(--color-main); color: var(--color-white); text-decoration: none;
-  font-size: 22px; padding: 15px 50px; border-radius: 50px; transition: background-color 0.3s, transform 0.2s;
-}
-.spot-button:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
+/* ==========================================================================
+   Message & Navigation
+   ========================================================================== */
 
-/* 画面左下固定「ページ上部に戻る」ボタン */
+.message-section {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 40px;
+  scroll-margin-top: 40px;
+}
+
+.message-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--color-accent);
+}
+
+.manner-box {
+  background-color: var(--color-main-bg);
+  border-radius: 30px;
+  padding: 40px 60px;
+}
+
+.manner-title {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: var(--color-accent);
+}
+
+.manner-text {
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.navigation-section {
+  text-align: center;
+  margin: 80px auto 100px;
+}
+
+.spot-button {
+  display: inline-block;
+  background-color: var(--color-main);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 22px;
+  padding: 15px 50px;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.spot-button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Page Top Button */
 .pagetop-btn {
   position: fixed;
   bottom: 30px;
   left: 30px;
-  background: var(--color-accent);
+  background-color: var(--color-accent);
   color: var(--color-white);
   font-size: 14px;
   padding: 12px 22px;
@@ -636,19 +729,37 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.footer { background: var(--color-main-bg); width: 100%; height: 56px; display: flex; align-items: center; justify-content: flex-end; padding-right: 50px; }
-.copyright { font-size: 15px; color: var(--color-text); }
+/* Footer */
+.footer {
+  background-color: var(--color-main-bg);
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
 
-/* 7. レスポンシブ対応 */
-@media (max-width: 1100px) {
+.copyright {
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Responsive Layout
+   ========================================================================== */
+
+/* Tablet & Mid Desktop */
+@media (max-width: 1200px) {
   .bird-intro-section::before,
   .bird-intro-section::after,
   .lucky-bird-section::before,
   .lucky-bird-section::after {
-    display: none !important;
+    display: none;
   }
 
-  .bird-intro-section, .lucky-bird-section {
+  .bird-intro-section,
+  .lucky-bird-section {
     max-width: 100%;
   }
 
@@ -660,7 +771,7 @@ body {
   .grid-item {
     width: 240px;
     height: auto;
-    background: transparent;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -671,6 +782,7 @@ body {
     width: 240px;
     height: 240px;
   }
+
   .item-image {
     position: absolute;
     width: 224px;
@@ -681,17 +793,18 @@ body {
 
   .hover-bubble-panel {
     position: relative;
-    bottom: auto; left: auto;
-    transform: none !important;
+    bottom: auto;
+    left: auto;
+    transform: none;
     width: 100%;
     margin-top: 20px;
-    background: var(--color-white);
+    background-color: var(--color-white);
     border: 2px solid var(--color-main-bg);
     border-radius: 16px;
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    opacity: 1 !important;
-    visibility: visible !important;
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -700,20 +813,50 @@ body {
     display: none;
   }
 
-  .hover-bubble-panel .title { font-size: 16px; text-align: center; }
-  .hover-bubble-panel .description { font-size: 13px; line-height: 1.5; }
+  .hover-bubble-panel .title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .hover-bubble-panel .description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
 
   .grid-item:hover .item-image,
-  .grid-item:hover .bg-circle { transform: none; }
+  .grid-item:hover .bg-circle {
+    transform: none;
+  }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .hamburger-menu { top: 15px; right: 20px; }
-  .menu-btn { width: 50px; height: 50px; }
-  .menu-btn span, .menu-btn span::before, .menu-btn span::after { width: 22px; }
+  .hamburger-menu {
+    top: 15px;
+    right: 20px;
+  }
 
-  .site-logo-header { left: 20px; top: 30px; font-size: 26px; }
-  .main-visual { min-height: 500px; padding-top: 120px; }
+  .menu-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .menu-btn span,
+  .menu-btn span::before,
+  .menu-btn span::after {
+    width: 22px;
+  }
+
+  .site-logo-header {
+    left: 20px;
+    top: 30px;
+    font-size: 26px;
+  }
+
+  .main-visual {
+    min-height: 500px;
+    padding-top: 120px;
+  }
 
   .senior-container {
     flex-direction: column;
@@ -751,26 +894,71 @@ body {
     border-color: var(--color-main-bg) transparent transparent transparent;
   }
 
-  .about-section, .manner-box { padding: 35px 25px; border-radius: 20px; }
-  .section-title, .message-title { font-size: 26px; }
+  .about-section,
+  .manner-box {
+    padding: 35px 25px;
+    border-radius: 20px;
+  }
+
+  .section-title,
+  .message-title {
+    font-size: 26px;
+  }
 
   .grid-container {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 50px 20px;
   }
 
-  .grid-item { width: 200px; }
-  .bg-circle { width: 200px; height: 200px; }
-  .item-image { width: 186px; height: 186px; top: 7px; left: 7px; }
-  .bird-name-label { font-size: 14px; padding: 4px 0; }
+  .grid-item {
+    width: 200px;
+  }
 
-  .hover-bubble-panel { margin-top: 15px; padding: 12px; }
-  .hover-bubble-panel .title { font-size: 15px; }
-  .hover-bubble-panel .description { font-size: 12px; }
+  .bg-circle {
+    width: 200px;
+    height: 200px;
+  }
 
-  .manner-title { font-size: 22px; }
-  .manner-text { font-size: 16px; }
-  .spot-button, .spot-button-inline { font-size: 18px; padding: 12px 30px; width: 100%; max-width: 340px; }
+  .item-image {
+    width: 186px;
+    height: 186px;
+    top: 7px;
+    left: 7px;
+  }
+
+  .bird-name-label {
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  .hover-bubble-panel {
+    margin-top: 15px;
+    padding: 12px;
+  }
+
+  .hover-bubble-panel .title {
+    font-size: 15px;
+  }
+
+  .hover-bubble-panel .description {
+    font-size: 12px;
+  }
+
+  .manner-title {
+    font-size: 22px;
+  }
+
+  .manner-text {
+    font-size: 16px;
+  }
+
+  .spot-button,
+  .spot-button-inline {
+    font-size: 18px;
+    padding: 12px 30px;
+    width: 100%;
+    max-width: 340px;
+  }
 
   .pagetop-btn {
     bottom: 20px;
@@ -779,5 +967,8 @@ body {
     font-size: 13px;
   }
 
-  .footer { justify-content: center; padding-right: 0; }
+  .footer {
+    justify-content: center;
+    padding-right: 0;
+  }
 }
